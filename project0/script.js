@@ -17,8 +17,6 @@ function newTodo() {
 }
 
 function createNewTodoElement(todo) {
-  const todoID = Date.now().toString();
-
   const entryChkbox = document.createElement('input');
   entryChkbox.type = 'checkbox';
   entryChkbox.classList.add(classNames.TODO_CHECKBOX);
@@ -27,25 +25,22 @@ function createNewTodoElement(todo) {
   const entryDltBtn = document.createElement('button');
   entryDltBtn.innerText = "Delete"
   entryDltBtn.classList.add(classNames.TODO_DELETE);
-  entryDltBtn.addEventListener('click', () => deleteTodoElement(todoID));
 
   const entryText = document.createElement('span');
   entryText.appendChild(document.createTextNode(todo));
   entryText.classList.add(classNames.TODO_TEXT);
 
   const entry = document.createElement('li');
-  entry.id = todoID;
   entry.appendChild(entryChkbox);
   entry.appendChild(entryText);
   entry.appendChild(entryDltBtn);
+  entryDltBtn.addEventListener('click', () => deleteTodoElement(entry));
   entry.classList.add(classNames.TODO_ITEM);
 
   list.appendChild(entry);
 }
 
-function deleteTodoElement(todoID) {
-  console.log("Deleting item: " + todoID);
-  const entry = document.getElementById(todoID);
+function deleteTodoElement(entry) {
   list.removeChild(entry);
   recomputeItemCount();
   recomputeUncheckedCount();
