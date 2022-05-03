@@ -57,10 +57,16 @@ ul {
 }
 
 .todo-container {
+  display: flex;
+  align-items: center;
   padding: 20px;
   border-bottom: 1px solid #333;
 }
 
 .todo-container:first-of-type {
   border-top: 1px solid #333;
+}
+
+.todo-text {
+  flex: auto;
 }
